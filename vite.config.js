@@ -5,7 +5,18 @@ export default defineConfig({
   plugins: [react()],
   build: {
     target: 'esnext',
-    minify: 'terser',
-    sourcemap: false
+    minify: 'esbuild',
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom', 'react-router-dom']
+        }
+      }
+    }
+  },
+  server: {
+    port: 5173
   }
 })
