@@ -1,0 +1,8 @@
+export const sampleProducts = [
+  { id: '1', name: 'Mesa Nogal', category: 'Comedor', price: 18500, material: 'Nogal sólido', image_url: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=900&q=85', description: 'Diseñada para reunir historias. Cubierta de nogal y estructura artesanal.' },
+  { id: '2', name: 'Credenza Alhelí', category: 'Sala', price: 24900, material: 'Encino y latón', image_url: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=85', description: 'Almacenamiento sereno con puertas corredizas y detalles cálidos.' },
+  { id: '3', name: 'Librero Nido', category: 'Oficina', price: 12700, material: 'Encino sólido', image_url: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=900&q=85', description: 'Un sistema modular que crece con tu colección.' },
+  { id: '4', name: 'Buró Cobre', category: 'Recámara', price: 6800, material: 'Parota y acero', image_url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85', description: 'Pequeño en huella, enorme en presencia.' },
+  { id: '5', name: 'Banco Tierra', category: 'Comedor', price: 4200, material: 'Tzalam sólido', image_url: 'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=900&q=85', description: 'Una pieza honesta para la barra o mesa familiar.' },
+  { id: '6', name: 'Escritorio Lienzo', category: 'Oficina', price: 15800, material: 'Encino y lino', image_url: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=900&q=85', description: 'Un espacio de trabajo hecho a la medida de tus ideas.' }
+]
