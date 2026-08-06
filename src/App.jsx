@@ -9,6 +9,7 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import ProductDetail from './pages/ProductDetail'
+import About from './pages/About'
 import { sampleProducts } from './utils/sampleProducts'
 
 export default function App(){
@@ -28,12 +29,13 @@ export default function App(){
     supabase.from('products').select('*').order('created_at',{ascending:false}).then(({data,error})=>{if(!error&&data?.length)setProducts(data)})
   },[])
 
-  if(loading)return <div className="loader">Cargando Madera Luz…</div>
+  if(loading)return <div className="loader">Cargando Carpinteria Flores…</div>
 
   return <>
     <Routes>
       <Route path="/" element={<Layout user={user}><Home products={products}/></Layout>}/>
       <Route path="/catalogo" element={<Layout user={user}><Catalog products={products}/></Layout>}/>
+      <Route path="/about" element={<Layout user={user}><About/></Layout>}/>
       <Route path="/producto/:id" element={<ProductDetail products={products}/>}/>
       <Route path="/contacto" element={<Layout user={user}><Contact/></Layout>}/>
       <Route path="/login" element={user?<Navigate to="/admin"/>:<Login onLogin={setUser}/>}/>

@@ -10,6 +10,7 @@ export default function Layout({children,user}){
       <button className="menu" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button>
       <nav className={open?'open':''}>
         <NavLink to="/">Inicio</NavLink>
+        <NavLink to="/about">Nosotros</NavLink>
         <NavLink to="/catalogo">Colección</NavLink>
         <NavLink to="/contacto">Contacto</NavLink>
         {user?<Link className="admin-link" to="/admin"><CircleUserRound size={17}/> Administrar</Link>:<Link className="admin-link" to="/login">Ingresar <ArrowRight size={16}/></Link>}
