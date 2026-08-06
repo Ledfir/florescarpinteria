@@ -20,10 +20,29 @@ export default function Home({products}){
     </section>
 
     <section className="intro">
-      <p className="eyebrow">Nuestro oficio</p>
-      <h2>De la madera a tu historia.</h2>
-      <p>Cada veta, unión y acabado está trabajado con paciencia. Creamos muebles a medida que se sienten como parte de tu hogar desde el primer día.</p>
-      <Link to="/contacto">Cuéntanos tu idea <ChevronRight size={17}/></Link>
+      <div className="intro-image">
+        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=700&q=85" alt="Madera artesanal"/>
+      </div>
+      <div className="intro-content">
+        <p className="eyebrow">Filosofía</p>
+        <h2>La madera<br/><i>recuerda</i></h2>
+        <p>Cada pieza comienza como un tronco. Termina como un legado. Trabajamos con madera maciza seleccionada, ensambles tradicionales y acabados naturales.</p>
+        <p>No producimos muebles; documentamos la evolución de la naturaleza en forma funcional. El grano dicta el diseño. La fibra guía el corte. Cada junta es una conversación entre el material y la mano.</p>
+        <div className="intro-stats">
+          <div className="stat">
+            <strong>15</strong>
+            <p>Años de oficio</p>
+          </div>
+          <div className="stat">
+            <strong>500+</strong>
+            <p>Piezas entregadas</p>
+          </div>
+          <div className="stat">
+            <strong>12</strong>
+            <p>Maderas dominadas</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section className="featured">
