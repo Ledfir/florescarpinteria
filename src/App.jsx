@@ -9,6 +9,7 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import ProductDetail from './pages/ProductDetail'
+import Model3D from './pages/Model3D'
 import About from './pages/About'
 import { sampleProducts } from './utils/sampleProducts'
 
@@ -37,6 +38,7 @@ export default function App(){
       <Route path="/catalogo" element={<Layout user={user}><Catalog products={products}/></Layout>}/>
       <Route path="/about" element={<Layout user={user}><About/></Layout>}/>
       <Route path="/producto/:id" element={<ProductDetail products={products}/>}/>
+      <Route path="/modelo-3d/:modelId" element={<Layout user={user}><Model3D/></Layout>}/>
       <Route path="/contacto" element={<Layout user={user}><Contact/></Layout>}/>
       <Route path="/login" element={user?<Navigate to="/admin"/>:<Login onLogin={setUser}/>}/>
       <Route path="/admin" element={user?<Dashboard products={products} setProducts={setProducts} user={user} onLogout={()=>supabase?.auth.signOut()}/>:<Navigate to="/login"/>}/>

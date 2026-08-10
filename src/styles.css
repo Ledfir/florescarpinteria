@@ -925,3 +925,465 @@
 .remove-image:hover {
   background: rgba(255, 0, 0, 0.8);
 }
+
+/* Section 3D Models */
+.section-3d-models {
+  padding: clamp(60px, 8vw, 120px) clamp(22px, 7vw, 112px);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.section-3d-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-3d-header div {
+  flex: 1;
+}
+
+.section-3d-header h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-family: 'Playfair Display';
+  font-weight: 600;
+  margin: 0 0 25px;
+  letter-spacing: -1px;
+}
+
+.section-3d-header p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 16px;
+  margin: 0 0 30px;
+}
+
+.section-3d-header .button {
+  white-space: nowrap;
+}
+
+/* Modal 3D */
+.modal-3d {
+  max-width: 1100px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(30px, 5vw, 50px);
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-3d .eyebrow {
+  margin-bottom: 14px;
+}
+
+.modal-3d h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  font-family: 'Playfair Display';
+  font-weight: 600;
+  margin: 0 0 15px;
+  letter-spacing: -1px;
+}
+
+.modal-3d-description {
+  color: var(--muted);
+  margin: 0 0 40px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 3D Models Gallery */
+.models-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* Card 3D */
+.card-3d {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(44, 33, 25, 0.08);
+  transition: all 0.3s ease;
+}
+
+.card-3d:hover {
+  box-shadow: 0 8px 24px rgba(44, 33, 25, 0.15);
+  transform: translateY(-2px);
+}
+
+.card-3d-content {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #f9f7f4 0%, #ede8e0 100%);
+  padding: 60px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.card-3d-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--clay);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 4px 12px rgba(181, 97, 58, 0.25);
+}
+
+.card-3d-footer {
+  padding: 30px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-3d-footer h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Playfair Display';
+}
+
+.card-3d-footer p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.card-3d-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  border: 0;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.card-3d-button:hover {
+  background: var(--clay);
+  gap: 14px;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive 3D Models */
+@media (max-width: 1024px) {
+  .section-3d-header {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .section-3d-models {
+    padding: 60px clamp(22px, 7vw, 60px);
+  }
+
+  .models-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-3d-header {
+    gap: 30px;
+  }
+
+  .section-3d-header h2 {
+    font-size: 28px;
+  }
+
+  .section-3d-header p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .models-gallery {
+    gap: 24px;
+  }
+
+  .card-3d-viewer {
+    height: 350px;
+  }
+
+  .card-3d-footer {
+    padding: 20px;
+  }
+
+  .modal-3d {
+    padding: 20px;
+  }
+
+  .modal-3d h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 440px) {
+  .section-3d-models {
+    padding: 50px 20px;
+  }
+
+  .section-3d-header {
+    gap: 20px;
+  }
+
+  .section-3d-header h2 {
+    font-size: 24px;
+  }
+
+  .models-gallery {
+    gap: 16px;
+  }
+
+  .card-3d-viewer {
+    height: 300px;
+  }
+
+  .card-3d-footer {
+    padding: 16px;
+  }
+
+  .card-3d-footer h3 {
+    font-size: 16px;
+  }
+
+  .card-3d-footer p {
+    font-size: 12px;
+  }
+
+  .modal-3d {
+    padding: 16px;
+    max-height: 95vh;
+  }
+}
+
+/* Model 3D Page */
+.model-3d-page {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.model-3d-header {
+  padding: 30px clamp(22px, 7vw, 112px);
+  border-bottom: 1px solid var(--line);
+  background: white;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  border-color: var(--clay);
+  color: var(--clay);
+  background: rgba(181, 97, 58, 0.04);
+}
+
+.model-3d-container {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) clamp(22px, 7vw, 112px);
+}
+
+.model-3d-viewer {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(44, 33, 25, 0.08);
+}
+
+.model-3d-viewer > div {
+  width: 100%;
+  height: 100%;
+}
+
+.model-3d-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.model-3d-info h1 {
+  font-size: 36px;
+  font-family: 'Playfair Display';
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.model-description {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15px;
+  margin: 0;
+}
+
+.model-specs {
+  padding: 20px;
+  background: #f9f7f4;
+  border-left: 3px solid var(--clay);
+  border-radius: 2px;
+}
+
+.model-specs h3 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--clay);
+  margin: 0 0 10px;
+}
+
+.model-specs p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.model-controls {
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.control-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.control-hint:last-child {
+  margin: 0;
+}
+
+.model-error {
+  padding: clamp(80px, 15vw, 120px) clamp(22px, 7vw, 112px);
+  text-align: center;
+}
+
+.model-error h1 {
+  font-size: 48px;
+  font-family: 'Playfair Display';
+  font-weight: 600;
+  margin: 0 0 30px;
+  letter-spacing: -1px;
+}
+
+.model-error .button {
+  margin-top: 20px;
+}
+
+/* Responsive Model 3D */
+@media (max-width: 1024px) {
+  .model-3d-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .model-3d-info {
+    order: 2;
+  }
+
+  .model-3d-viewer {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .model-3d-container {
+    padding: 30px clamp(22px, 5vw, 60px);
+  }
+
+  .model-3d-info h1 {
+    font-size: 28px;
+  }
+
+  .model-description {
+    font-size: 14px;
+  }
+
+  .model-3d-header {
+    padding: 20px clamp(22px, 5vw, 60px);
+  }
+}
+
+@media (max-width: 440px) {
+  .model-3d-page {
+    min-height: auto;
+  }
+
+  .model-3d-container {
+    padding: 20px 20px;
+  }
+
+  .model-3d-info h1 {
+    font-size: 24px;
+  }
+
+  .model-specs {
+    padding: 16px;
+  }
+
+  .model-controls {
+    padding: 16px;
+  }
+
+  .control-hint {
+    font-size: 12px;
+  }
+
+  .model-3d-header {
+    padding: 16px 20px;
+  }
+}
