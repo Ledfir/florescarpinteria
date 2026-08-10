@@ -412,16 +412,16 @@ export default function ClosetOrganizer() {
 
       <button
         onClick={handleReplay}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',
+        style={{
+          position: 'absolute', bottom: 24, left: 24,
+          background: 'transparent', border: '1px solid #C9A227', color: '#C9A227',
+          fontFamily: 'ui-monospace, "SFMono-Regular", "Courier New", monospace',
+          fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
+          padding: '10px 18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}
         title="Reiniciar ensamblaje"
       >
-        <RotateCcw size={16} />nospace, "SFMono-Regular", "Courier New", monospace',
-          fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
-          padding: '10px 18px', cursor: 'pointer',
-        }}
-      >
-        Reiniciar ensamblaje
+        <RotateCcw size={16} />
       </button>
 
       <button
