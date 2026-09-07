@@ -7,7 +7,14 @@ create table if not exists public.products (
   material text not null,
   description text,
   image_url text,
+  images jsonb default '[]',
   created_at timestamptz default now()
+);
+
+alter table public.products add column if not exists images jsonb default '[]';
+-- Si la columna quedo creada como texto (guardando el array como string JSON), corrige el tipo:
+alter table public.products alter column images type jsonb using (
+  case when images is null or images::text = '' then '[]'::jsonb else images::text::jsonb end
 );
 
 alter table public.products enable row level security;

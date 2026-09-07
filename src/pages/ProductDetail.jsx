@@ -63,6 +63,7 @@ export default function ProductDetail({products}){
           </div>
 
           <div className="detail-price">
+            <span>Desde </span>
             <strong>{money(product.price)}</strong>
             <span>MXN</span>
           </div>
@@ -71,26 +72,13 @@ export default function ProductDetail({products}){
             <div className="spec-section">
               <p className="spec-label">MATERIAL</p>
               <h3>{product.material}</h3>
-              <p className="spec-description">Walnut macizo, seleccionado y secado naturalmente. Cada tabla elegida por su grano, densidad y carácter único.</p>
             </div>
 
             <div className="spec-section">
               <p className="spec-label">CONSTRUCCIÓN</p>
               <h3>Ensambles</h3>
-              <p className="spec-description">Ensambles tradicionales de cola de milano y espigas. Sin tornillos visibles. La estructura es honesta y permanente.</p>
             </div>
 
-            <div className="spec-section">
-              <p className="spec-label">PROTECCIÓN</p>
-              <h3>Acabado</h3>
-              <p className="spec-description">Tratado con aceite de linaza. El acabado realiza el grano natural y protege sin sellar la madera.</p>
-            </div>
-
-            <div className="spec-section">
-              <p className="spec-label">DIMENSIONES</p>
-              <h3>Medidas</h3>
-              <p className="spec-description">Disponible en diferentes dimensiones. Consultanos para una pieza personalizada según tu espacio.</p>
-            </div>
           </div>
 
           <button className="button detail-button">Solicitar especificación</button>

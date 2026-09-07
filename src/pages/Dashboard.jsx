@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, LogOut, Plus, Search, Trash2 } from 'lucide-react'
 import ProductModal from '../components/ProductModal'
 import { supabase } from '../supabase'
-import { money } from '../utils/formatters'
+import { money, parseImages } from '../utils/formatters'
 
 export default function Dashboard({products,setProducts,user,onLogout}){
   const [editing,setEditing]=useState(null)
@@ -89,6 +89,6 @@ export default function Dashboard({products,setProducts,user,onLogout}){
         </>
       )}
     </section>
-    {editing&&<ProductModal product={editing} close={()=>setEditing(null)} save={async item=>{if(supabase){const {data,error}=item.id?await supabase.from('products').update(item).eq('id',item.id).select().single():await supabase.from('products').insert(item).select().single();if(error)return alert(error.message);item={...data,images:data.image_url?[data.image_url]:[]};};setProducts(x=>item.id&&x.some(p=>p.id===item.id)?x.map(p=>p.id===item.id?item:p):[{...item,id:item.id||crypto.randomUUID()},...x]);setEditing(null)}}/>}
+    {editing&&<ProductModal product={editing} close={()=>setEditing(null)} save={async item=>{if(supabase){const {data,error}=item.id?await supabase.from('products').update(item).eq('id',item.id).select().single():await supabase.from('products').insert(item).select().single();if(error)return alert(error.message);const images=parseImages(data.images);item={...data,images:images.length>0?images:(data.image_url?[data.image_url]:[])};};setProducts(x=>item.id&&x.some(p=>p.id===item.id)?x.map(p=>p.id===item.id?item:p):[{...item,id:item.id||crypto.randomUUID()},...x]);setEditing(null)}}/>}
   </main>
 }

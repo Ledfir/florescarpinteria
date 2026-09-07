@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail'
 import Model3D from './pages/Model3D'
 import About from './pages/About'
 import { sampleProducts } from './utils/sampleProducts'
+import { parseImages } from './utils/formatters'
 
 export default function App(){
   const [user,setUser]=useState(null)
@@ -29,10 +30,10 @@ export default function App(){
     if(!supabase)return
     supabase.from('products').select('*').order('created_at',{ascending:false}).then(({data,error})=>{
       if(!error&&data?.length){
-        const normalized = data.map(p => ({
-          ...p,
-          images: Array.isArray(p.images) ? p.images : (p.image_url ? [p.image_url] : [])
-        }))
+        const normalized = data.map(p => {
+          const images = parseImages(p.images)
+          return {...p, images: images.length>0 ? images : (p.image_url ? [p.image_url] : [])}
+        })
         setProducts(normalized)
       }
     })

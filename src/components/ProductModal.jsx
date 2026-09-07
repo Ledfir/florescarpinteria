@@ -1,24 +1,33 @@
 import React, { useState } from 'react'
 import { Check, Upload, X } from 'lucide-react'
 import { supabase } from '../supabase'
+import { parseImages } from '../utils/formatters'
 
 export default function ProductModal({product,close,save}){
-  const [item,setItem]=useState({...product,images:product.images||product.image_url?[product.image_url]:[]})
+  const [item,setItem]=useState(()=>{
+    const images=parseImages(product.images)
+    return {...product,images:images.length > 0 ? images : (product.image_url ? [product.image_url] : [])}
+  })
   const [uploading,setUploading]=useState(false)
-  const edit=(key,val)=>setItem(x=>({...x,[key]:val}))
+  const edit=(key,val)=>setItem(x=>({...x,[key]:typeof val === 'function' ? val(x[key]) : val}))
 
   async function upload(e){
-    const file=e.target.files?.[0]
-    if(!file||!supabase)return
+    const files=Array.from(e.target.files||[])
+    if(files.length===0||!supabase)return
     setUploading(true)
-    const path=`${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'-')}`
-    const {error}=await supabase.storage.from('product-images').upload(path,file)
-    if(error)alert(error.message)
-    else{
-      const {data}=supabase.storage.from('product-images').getPublicUrl(path)
-      edit('images',[...item.images,data.publicUrl])
+    const urls=[]
+    for(const file of files){
+      const path=`${Date.now()}-${Math.random().toString(36).slice(2)}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'-')}`
+      const {error}=await supabase.storage.from('product-images').upload(path,file)
+      if(error)alert(error.message)
+      else{
+        const {data}=supabase.storage.from('product-images').getPublicUrl(path)
+        urls.push(data.publicUrl)
+      }
     }
+    if(urls.length>0)edit('images', prev => [...prev, ...urls])
     setUploading(false)
+    e.target.value=''
   }
 
   function removeImage(idx){
@@ -42,7 +51,7 @@ export default function ProductModal({product,close,save}){
         <label>Material<input value={item.material} onChange={e=>edit('material',e.target.value)} required/></label>
       </div>
       <label>Descripción<textarea rows="3" value={item.description||''} onChange={e=>edit('description',e.target.value)}/></label>
-      <label className="upload"><Upload size={17}/> {uploading?'Subiendo…':'Subir a Supabase Storage'}<input type="file" accept="image/*" onChange={upload}/></label>
+      <label className="upload"><Upload size={17}/> {uploading?'Subiendo…':'Subir a Supabase Storage'}<input type="file" accept="image/*" multiple onChange={upload}/></label>
       {item.images.length>0&&<div className="images-gallery">
         <p className="gallery-label">{item.images.length} imagen{item.images.length!==1?'es':''}</p>
         <div className="gallery-grid">
