@@ -26,7 +26,7 @@ export default function ProductModal({product,close,save}){
   }
 
   return <div className="modal-backdrop">
-    <form className="modal" onSubmit={e=>{e.preventDefault();save({...item,price:Number(item.price),image_url:item.images[0]||''})}}>
+    <form className="modal" onSubmit={e=>{e.preventDefault();save({...item,price:Number(item.price),image_url:item.images[0]||'',images:item.images})}}>
       <button type="button" className="close" onClick={close}><X/></button>
       <p className="eyebrow">{item.id?'Editar pieza':'Nueva pieza'}</p>
       <h2>{item.id?'Actualizar producto':'Añadir producto'}</h2>
@@ -52,7 +52,7 @@ export default function ProductModal({product,close,save}){
           </div>)}
         </div>
       </div>}
-      <button className="button">Guardar producto <Check size={17}/></button>
+      <button className="button" disabled={item.images.length===0}>Guardar producto <Check size={17}/></button>
     </form>
   </div>
 }

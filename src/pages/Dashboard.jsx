@@ -65,12 +65,6 @@ export default function Dashboard({products,setProducts,user,onLogout}){
         >
           Productos
         </button>
-        <button 
-          className={`tab-button ${activeTab==='users'?'active':''}`}
-          onClick={()=>setActiveTab('users')}
-        >
-          Usuarios
-        </button>
       </div>
 
       {activeTab==='products'&&(
@@ -91,27 +85,6 @@ export default function Dashboard({products,setProducts,user,onLogout}){
               <button onClick={()=>setEditing(p)}>Editar</button>
               <button className="delete" onClick={()=>remove(p)}><Trash2 size={17}/></button>
             </article>)}
-          </div>
-        </>
-      )}
-
-      {activeTab==='users'&&(
-        <>
-          <div className="dash-title">
-            <div>
-              <p className="eyebrow">Administración</p>
-              <h1>Usuarios</h1>
-            </div>
-          </div>
-          <div className="toolbar"><Search size={18}/><input placeholder="Buscar usuario" value={usersQuery} onChange={e=>setUsersQuery(e.target.value)}/><span>{users.length} usuarios</span></div>
-          <div className="admin-list">
-            {shownUsers.length>0?shownUsers.map(u=><article key={u.id}>
-              <div style={{width:'48px',height:'42px',background:'#666',borderRadius:'4px',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:'20px',fontWeight:'bold'}}>
-                {u.email.charAt(0).toUpperCase()}
-              </div>
-              <div><b>{u.email}</b><p>{u.created_at?new Date(u.created_at).toLocaleDateString('es-MX'):'N/A'}</p></div>
-              <button className="delete" onClick={()=>removeUser(u)}><Trash2 size={17}/></button>
-            </article>):<p style={{padding:'20px',color:'#999'}}>No hay usuarios registrados</p>}
           </div>
         </>
       )}
