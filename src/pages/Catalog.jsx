@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Download } from 'lucide-react'
 import ProductCard from '../components/ProductCard'
 import Modal3D from '../components/Modal3D'
+import { generateCatalogPdf } from '../utils/generateCatalogPdf'
 
 export default function Catalog({products}){
   const [cat,setCat]=useState('Todo')
   const [show3DModal,setShow3DModal]=useState(false)
+  const [generatingPdf,setGeneratingPdf]=useState(false)
   const cats=['Todo',...new Set(products.map(p=>p.category))]
   const filtered=cat==='Todo'?products:products.filter(p=>p.category===cat)
   
@@ -23,6 +25,17 @@ export default function Catalog({products}){
     }
   ]
 
+  async function downloadPdf(){
+    if(generatingPdf||products.length===0)return
+    setGeneratingPdf(true)
+    try{
+      await generateCatalogPdf(products)
+    }catch(err){
+      alert('No se pudo generar el PDF: '+err.message)
+    }
+    setGeneratingPdf(false)
+  }
+
   return <main className="catalog">
     <section className="page-title">
       <p className="eyebrow">Piezas para vivir</p>
@@ -36,6 +49,12 @@ export default function Catalog({products}){
       {filtered.map(p=><ProductCard key={p.id} p={p}/>)}
     </div>
     
+    <section className="button-download-catalago">
+      <button className="button" onClick={downloadPdf} disabled={generatingPdf}>
+        <Download size={18}/> {generatingPdf?'Generando PDF…':'Descargar catálogo PDF'}
+      </button>
+    </section>
+
     <section className="section-3d-models">
       <div className="section-3d-header">
         <div>
