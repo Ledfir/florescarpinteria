@@ -27,7 +27,15 @@ export default function App(){
 
   useEffect(()=>{
     if(!supabase)return
-    supabase.from('products').select('*').order('created_at',{ascending:false}).then(({data,error})=>{if(!error&&data?.length)setProducts(data)})
+    supabase.from('products').select('*').order('created_at',{ascending:false}).then(({data,error})=>{
+      if(!error&&data?.length){
+        const normalized = data.map(p => ({
+          ...p,
+          images: Array.isArray(p.images) ? p.images : (p.image_url ? [p.image_url] : [])
+        }))
+        setProducts(normalized)
+      }
+    })
   },[])
 
   if(loading)return <div className="loader">Cargando Carpinteria Flores…</div>
