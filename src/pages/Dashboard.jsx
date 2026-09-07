@@ -85,7 +85,7 @@ export default function Dashboard({products,setProducts,user,onLogout}){
           <div className="toolbar"><Search size={18}/><input placeholder="Buscar producto" value={query} onChange={e=>setQuery(e.target.value)}/><span>{products.length} piezas</span></div>
           <div className="admin-list">
             {shown.map(p=><article key={p.id}>
-              <img src={p.images && p.images.length > 0 ? p.images[0] : p.image_url} alt=""/>
+              <img src={p.image_url} alt=""/>
               <div><b>{p.name}</b><p>{p.category} · {p.material}</p></div>
               <strong>{money(p.price)}</strong>
               <button onClick={()=>setEditing(p)}>Editar</button>
@@ -116,6 +116,6 @@ export default function Dashboard({products,setProducts,user,onLogout}){
         </>
       )}
     </section>
-    {editing&&<ProductModal product={editing} close={()=>setEditing(null)} save={async item=>{if(supabase){const {data,error}=item.id?await supabase.from('products').update(item).eq('id',item.id).select().single():await supabase.from('products').insert(item).select().single();if(error)return alert(error.message);item=data}setProducts(x=>item.id&&x.some(p=>p.id===item.id)?x.map(p=>p.id===item.id?item:p):[{...item,id:item.id||crypto.randomUUID()},...x]);setEditing(null)}}/>}
+    {editing&&<ProductModal product={editing} close={()=>setEditing(null)} save={async item=>{if(supabase){const {data,error}=item.id?await supabase.from('products').update(item).eq('id',item.id).select().single():await supabase.from('products').insert(item).select().single();if(error)return alert(error.message);item={...data,images:data.image_url?[data.image_url]:[]};};setProducts(x=>item.id&&x.some(p=>p.id===item.id)?x.map(p=>p.id===item.id?item:p):[{...item,id:item.id||crypto.randomUUID()},...x]);setEditing(null)}}/>}
   </main>
 }
